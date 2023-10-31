@@ -1,0 +1,15 @@
+{
+  "name": "sputnik",
+  "version": "1.0.0",
+  "description": "[build](http://sputnik.sptnktest.ru)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gulp": "github:gulpjs/gulp#4.0"
+  }
+}
