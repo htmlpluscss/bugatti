@@ -275,6 +275,11 @@ http://htmlpluscss.ru
 		$('.product__img-big').children().eq($(this).index()).addClass('product__img-big__active').siblings().removeClass('product__img-big__active');
 	});
 
+// select
+	$('.select__control').on('change',function(){
+		$(this).siblings('.select__value').removeClass('select__value--default').text($(this).children(':selected').text());
+	});
+
 
 // cart
 	if($('.cart').length>0){
@@ -443,12 +448,15 @@ http://htmlpluscss.ru
 		var select = function(){
 
 			var select = $(this);
+			var form = select.closest('form');
 			select.wrap('<div class="select notsel">');
 			var select_box = select.parent();
 			var c = '<span class="select__value"><span class="select__text"></span></span><div class="select__box"><ul>';
 			select.children('option').each(function() {
-				if($(this).val()!='none')
-					c += '<li class="select__li" data-value="' + $(this).val() + '">' + $(this).text() + '</li>';
+				if($(this).val()=='none'){
+					return;
+				}
+				c += '<li class="select__li" data-value="' + $(this).val() + '">' + $(this).text() + '</li>';
 			});
 			c += '</ul></div>';
 			select.before(c);
@@ -462,13 +470,25 @@ http://htmlpluscss.ru
 			});
 
 			box_ul.on('click','.select__li', function() {
-				select.val($(this).attr('data-value')).trigger('change');
+				select.val($(this).attr('data-value'));
+				select.trigger('change');
+				box_ul.find('.select__li').each(function() {
+					$(this).removeClass('is-current');
+				});
+				$(this).addClass('is-current');
+				changeSelect();
 			});
-			select.on('change',function(){
+
+			var changeSelect = function() {
 				var o = select.children(':selected');
 				visible.text(o.text());
-				o.attr('value')=='none' ? select_box.addClass('select--default') : select_box.removeClass('select--default');
-			}).trigger('change');
+				if(select.val()=='none'||select.val()==''){
+					select_box.removeClass('select--default');
+				} else {
+					select_box.addClass('select--default');
+				}
+			}
+			changeSelect();
 
 		}
 
@@ -502,3 +522,27 @@ function cssAnimation(a){var b,c,d=document.createElement("cssanimation");switch
 
 // Склонение окончаний
 function declension(d,c){var b;var a=d%100;if(a>4&&a<21){b=c['2']}else{a=a%10;if(a==1)b=c['0'];else if(a>1&&a<5)b=c['1'];else b=c['2']}return b};
+
+
+/*
+( block => {
+
+	if ( block ) {
+
+		window.addEventListener("click", event => {
+
+			if ( event.target.closest('.catalog-filter__wrap') ) {
+
+				block.classList.toggle('is-open');
+
+			} else {
+
+				block.classList.remove('is-open');
+
+			}
+
+		});
+
+	}
+
+})(document.querySelector('.catalog-filter'));*/

@@ -1,14 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,600i,700&subset=latin,cyrillic);
-@font-face {
-  font-family: 'ABCDiatype';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(/fonts/ABCDiatype-Light.woff2);
-}
 * {
 	margin: 0;
 	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 body {
@@ -17,7 +12,7 @@ body {
 	font: 13px/20px 'Open Sans', sans-serif;
 	-webkit-text-size-adjust:none;
 	-webkit-overflow-scrolling: touch;
-	min-width: 1200px;
+	min-width: 1250px;
 }
 a {
 	color: #1b1917;
@@ -32,7 +27,11 @@ a:hover {
 :active {
 	outline:none
 }
-::selection {
+::-moz-selection {
+	color: #fff;
+	background: #1b1917;
+}
+*::selection {
 	color: #fff;
 	background: #1b1917;
 }
@@ -49,7 +48,7 @@ header, main, nav, section, article, aside, footer, time {
 	display:block;
 	position: relative;
 }
-.clr::after {
+.clr:after {
 	clear: both;
 	content: '';
 	display: table;
@@ -57,7 +56,12 @@ header, main, nav, section, article, aside, footer, time {
 
 .center {
 	margin: 0 auto;
-	width: 1200px;
+	max-width: 1200px;
+	position: relative;
+}
+.center-mini {
+	margin: 0 auto;
+	max-width: 900px;
 	position: relative;
 }
 
@@ -95,13 +99,32 @@ textarea.input {
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.21);
 }
 
-::placeholder {
+::-moz-placeholder {
 	color: #1b1917;
 	opacity: .5;
 }
-.input:focus::placeholder {
+:-ms-input-placeholder {
+	color: #1b1917;
+	opacity: .5;
+}
+::-webkit-input-placeholder {
+	color: #1b1917;
+	opacity: .5;
+}
+.input:focus::-moz-placeholder {
 	color: #1b1917;
 	opacity: .7;
+}
+.input:focus:-ms-input-placeholder {
+	color: #1b1917;
+	opacity: .7;
+}
+.input:focus::-webkit-input-placeholder {
+	color: #1b1917;
+	opacity: .7;
+}
+.input::-ms-clear {
+	display: none
 }
 
 .hide {
@@ -187,6 +210,25 @@ iframe {
 .btn:hover {
 	color: #c1022c;
 }
+.btn--gray {
+	background: #d8dadb;
+	border-radius: 0;
+	border: 0;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.btn--red {
+	color: #fff;
+	background: #c60011;
+	border-radius: 0;
+	border: 0;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.btn--red:hover {
+	color: #1b1917;
+}
+
 .btn input {
 	top: 0;
 	left: 0;

@@ -20,21 +20,21 @@ gulp.task('serve', () => {
 gulp.task('default', () => {
 
 	server.init({
-		proxy: "https://bugatti-russia.ru",
+		proxy: "https://xn--80abgv3cad.xn--80adxhks",
 		https: true,
 		serveStatic: ['.'],
 		rewriteRules: [
 			{
-				match: new RegExp('/css/default.css'),
+				match: new RegExp('https://xn--80abgv3cad.xn--80adxhks/css/default.css'),
 				fn: 'default.css'
 			},
 			{
-				match: new RegExp('/css/style.css'),
+				match: new RegExp('https://xn--80abgv3cad.xn--80adxhks/css/style.css'),
 				fn: 'style.css'
 			},
 			{
-				match: new RegExp('app.min.*?js'),
-				fn: 'app.js'
+				match: new RegExp('js/js.js'),
+				fn: 'js.js'
 			}
 		],
 		files: [
